@@ -17,7 +17,7 @@ else:
 
 # To parse the html page
 parsed_page = BeautifulSoup(response_page.text, 'html.parser')
-# Exctracting all jobs listing
+# Extracting all jobs listing
 target = parsed_page.find('div', id="ResultsContainer")
 job_listing = target.find_all('div', class_="column is-half")
 
@@ -32,9 +32,9 @@ for job in job_listing:
     state = location.split(',',maxsplit=1)[1].strip()
     date_posted = job.find('p', class_="is-small has-text-grey").text
     date_posted =" ".join(date_posted.split())
-    date_obj = datetime.strptime(date_posted, "%Y-%m-%d")
-    date_posted_dmd = date_obj.strftime("%A, %-d %B")
-    date_posted_yr = date_obj.year
+    date_object = datetime.strptime(date_posted, "%Y-%m-%d")
+    date_posted_dmd = date_object.strftime("%A, %#d %B")
+    date_posted_yr = date_object.year
 
     # Finally Transformed data for temporary storage
     jobs_listing = {
@@ -47,6 +47,9 @@ for job in job_listing:
     }
 
     fake_jobs_listing.append(jobs_listing)
+
+fake_job_df = pd.DataFrame(fake_jobs_listing)  # Convert to dataframe
+fake_job_df.to_csv("fake_jobs.csv")  # save to csv
 
 
 
