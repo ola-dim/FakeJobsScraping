@@ -11,3 +11,14 @@ The following were the steps taken to gather data from [Fake Jobs website](https
 * Load the data.
 
 
+## Instructions
+The following are the instructions on how to run the script:
+
+* Check the `requirements.txt` for the required dependencies.
+* Clone the Repository.
+* Create a Virtual Enviroment (Optional but Recommended).
+* Install Dependencies.
+* Run the Script
+* Troubleshooting:
+
+    * if running on windows and encountering datetime format issues, replace `%-d ` with `%#d`.
